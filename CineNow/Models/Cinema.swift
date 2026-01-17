@@ -6,3 +6,16 @@
 //
 
 import Foundation
+struct Cinema : Identifiable , Codable {
+    let id : UUID
+    let name : String
+    let address : String
+    let city : String
+    
+    enum CodingKeys :String , CodingKey {
+        case id
+        case name
+        case address
+        case city 
+    }
+}
