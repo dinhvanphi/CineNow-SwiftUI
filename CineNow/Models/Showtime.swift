@@ -16,7 +16,7 @@ struct Showtime : Identifiable , Codable {
     var status : String
     
     enum CodingKeys : String , CodingKey {
-        case id
+        case id = "showtime_id"
         case status
         case movieId = "movie_id"
         case roomId = "room_id"

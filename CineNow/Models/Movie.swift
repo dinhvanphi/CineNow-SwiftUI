@@ -26,7 +26,7 @@ struct Movie : Identifiable , Codable {
     let backdropImage : String?
     
     enum CodingKeys : String , CodingKey {
-        case id , title , overview , popularity , adult , status , featured , image
+        case id ,title , overview , popularity , adult , status , featured , image
         case originalLanguage = "original_languge"
         case originalTitle = "original_title"
         case releaseDate = "release_date"
@@ -37,3 +37,4 @@ struct Movie : Identifiable , Codable {
         case backdropImage = "backdrop_image"
     }
 }
+ 
