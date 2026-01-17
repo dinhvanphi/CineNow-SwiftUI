@@ -7,7 +7,7 @@
 
 import Foundation
 struct Cinema : Identifiable , Codable {
-    let id : UUID
+    let id : Int 
     let name : String
     let address : String
     let city : String

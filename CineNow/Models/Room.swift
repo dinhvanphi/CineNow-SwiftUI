@@ -7,8 +7,8 @@
 
 import Foundation
 struct Room : Identifiable , Codable {
-    let id : UUID
-    let cinemaId : UUID
+    let id : Int
+    let cinemaId : Int
     let name : String
     var capacity : Int
     
