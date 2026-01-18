@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct IntroView: View {
+    @State private var showLogin = false
+    
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -59,7 +61,12 @@ struct IntroView: View {
 
                 // Buttons
                 VStack(spacing: 14) {
-                    Button("Đăng nhập") { }
+                    Button("Đăng nhập") {
+                        showLogin = true
+                    }
+                    .navigationDestination(isPresented: $showLogin ){
+                        LoginView()
+                    }
                         .frame(maxWidth: .infinity, minHeight: 52)
                         .background(Color.yellow)
                         .foregroundColor(.black)
