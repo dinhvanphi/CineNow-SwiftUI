@@ -14,8 +14,10 @@ struct CineNowApp: App {
 
     var body: some Scene {
         WindowGroup {
-            IntroView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            NavigationStack{
+                IntroView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }
         }
     }
 }
