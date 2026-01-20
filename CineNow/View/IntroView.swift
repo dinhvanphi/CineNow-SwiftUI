@@ -10,6 +10,7 @@ import SwiftUI
 
 struct IntroView: View {
     @State private var showLogin = false
+    @State private var showSignup = false
     
     var body: some View {
         ZStack {
@@ -73,7 +74,12 @@ struct IntroView: View {
                         .cornerRadius(14)
                         .font(.headline)
 
-                    Button("Đăng ký") { }
+                    Button("Đăng ký") {
+                        showSignup = true
+                    }
+                    .navigationDestination(isPresented: $showSignup){
+                        SignupView()
+                    }
                         .frame(maxWidth: .infinity, minHeight: 52)
                         .background(.clear)
                         .overlay(
