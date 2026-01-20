@@ -96,7 +96,7 @@ struct LoginView : View {
                             .frame(maxWidth: .infinity)
                             .frame(height: 1)
 
-                        Text("Hoặc đăng nhập với")
+                        Text("Hoặc")
                             .foregroundColor(.gray)
 
                         Rectangle()
@@ -105,13 +105,35 @@ struct LoginView : View {
                     }
                     .padding(.horizontal, 32)
                     .foregroundColor(.white.opacity(0.3))
-
-                    
-
+                    Button{
                         
+                    }
+                    label : {
+                        HStack(spacing : 12) {
+                            Image(systemName: "g.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20 , height : 20)
+                                .foregroundColor(.white)
+                            Text ("Google")
+                                .foregroundColor(.white)
+                                .font(.headline)
+                        }
+                        .frame(maxWidth: .infinity , minHeight: 52)
+                        .background(Color.white.opacity(0.12))
+                        .cornerRadius(20)
+                        
+                    }
+                    Spacer().frame(height: 30)
                     
-
+                    HStack(spacing : 20){
+                        Text("Chưa có tài khoản?")
+                            .foregroundColor(.gray)
+                        Button("Đăng ký"){}
+                            .foregroundColor(.yellow)
+                    }
                     
+                  
                     }
                 .padding()
                Spacer()
