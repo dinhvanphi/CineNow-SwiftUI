@@ -9,10 +9,12 @@ import Foundation
 import SwiftUI
 
 struct LoginView : View {
+    
     @Environment(\.dismiss) private var dismiss
     @State private var email = ""
     @State private var password = ""
     @State private var isShowPassword = false
+    @State private var showSignup = false
     var body : some View {
         ZStack(){
             Color.black.ignoresSafeArea()
@@ -129,7 +131,12 @@ struct LoginView : View {
                     HStack(spacing : 20){
                         Text("Chưa có tài khoản?")
                             .foregroundColor(.gray)
-                        Button("Đăng ký"){}
+                        Button("Đăng ký"){
+                            showSignup = true
+                        }
+                        .navigationDestination(isPresented: $showSignup){
+                            SignupView()
+                        }
                             .foregroundColor(.yellow)
                     }
                     
