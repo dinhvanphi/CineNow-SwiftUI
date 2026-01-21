@@ -22,6 +22,21 @@ struct RegisterUser : Codable {
 struct RegisterResponse : Codable {
     let success : Bool
     let user : RegisterUser?
-    let varified : Bool
-    let message : String 
+    let verified : Bool
+    let message : String
+}
+
+extension User {
+    init (from dto : RegisterUser) {
+        self.id = UUID()
+        self.name = dto.name
+        self.email = dto.email
+        self.phone = dto.phone
+        self.role = "user"
+        self.createdAt = ISO8601DateFormatter().date(from: dto.createdAt) ?? Date()
+        self.isVerified = false
+        self.googleId = nil
+        self.avatarUrl = nil
+        self.updatedAt = Date()
+    }
 }
