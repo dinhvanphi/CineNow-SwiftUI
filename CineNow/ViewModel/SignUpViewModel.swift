@@ -13,6 +13,7 @@ final class SignUpViewModel : ObservableObject {
     @Published var email = ""
     @Published var phone = ""
     @Published var password = ""
+    @Published var confirmPassword = ""
     @Published var isLoading = false
     @Published var errorMessage : String?
     @Published var shouldNavigatetoOTP = false
@@ -26,6 +27,10 @@ final class SignUpViewModel : ObservableObject {
             errorMessage = "Vui lòng nhập đầy đủ thông tin"
             return
         }
+        guard password == confirmPassword else {
+            errorMessage = "Mật khẩu xác nhận không khớp "
+            return
+        }
         isLoading = true
         errorMessage = nil
         
@@ -33,7 +38,8 @@ final class SignUpViewModel : ObservableObject {
             name : name ,
             email : email ,
             phone : phone ,
-            password : password
+            password : password 
+            
         ) {[weak self] result in
             guard let self = self else {
                 return

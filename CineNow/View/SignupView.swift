@@ -6,19 +6,17 @@
 //
 
 import Foundation
+import Combine
 import SwiftUI
 
 struct SignupView : View {
     @Environment(\.dismiss) private var dismiss
-    @State private var name = ""
-    @State private var phone = ""
-    @State private var email = ""
-    @State private var password = ""
-    @State private var confirmPassword = ""
+    @StateObject private var viewModel = SignUpViewModel()
     @State private var isShowPassword = false
     @State private var isShowComfirmPassword = false
     @State private var isAccepted = false
     @State private var showLogin = false
+
     var body: some View{
         ZStack(){
             Color.black.ignoresSafeArea()
@@ -51,7 +49,7 @@ struct SignupView : View {
                         .foregroundColor(.yellow)
                         .font(.system(size: 20, weight: .semibold))
                     
-                    TextField("Họ và tên" , text : $name)
+                    TextField("Họ và tên" , text : $viewModel.name)
                         .foregroundColor(.white)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
@@ -65,7 +63,7 @@ struct SignupView : View {
                         .foregroundColor(.yellow)
                         .font(.system(size: 20, weight: .semibold))
                     
-                    TextField("Số điện thoại" , text : $phone)
+                    TextField("Số điện thoại" , text : $viewModel.phone)
                         .foregroundColor(.white)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
@@ -79,7 +77,7 @@ struct SignupView : View {
                         .foregroundColor(.yellow)
                         .font(.system(size: 20, weight: .semibold))
                     
-                    TextField("Email" , text : $email)
+                    TextField("Email" , text : $viewModel.email)
                         .foregroundColor(.white)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
@@ -93,7 +91,7 @@ struct SignupView : View {
                         .font(.system(size: 20, weight: .semibold))
                     
                         .foregroundColor(.yellow)
-                    TextField("Mật khẩu" , text : $password)
+                    TextField("Mật khẩu" , text : $viewModel.password)
                         .foregroundColor(.white)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
@@ -107,7 +105,7 @@ struct SignupView : View {
                         .foregroundColor(.yellow)
                         .font(.system(size: 20, weight: .semibold))
                     
-                    TextField("Xác nhận mật khẩu" , text : $confirmPassword)
+                    TextField("Xác nhận mật khẩu" , text : $viewModel.confirmPassword)
                         .foregroundColor(.white)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
@@ -131,7 +129,10 @@ struct SignupView : View {
                 }
                 .padding()
                 
-                Button {}
+                Button {
+                    viewModel.register()
+                    
+                }
                 label : {
                     Text("Đăng Ký")
                         .foregroundColor(isAccepted ? Color.white : Color.black)
@@ -145,6 +146,18 @@ struct SignupView : View {
                 }
                 .disabled(!isAccepted)
                 .padding()
+                .navigationDestination(isPresented: $viewModel.shouldNavigatetoOTP){
+                    AccountVerificationView()
+                }
+                
+                if let error = viewModel.errorMessage{
+                    Text(error)
+                        .foregroundColor(.yellow)
+                        .font(.footnote)
+                        .frame(maxWidth: .infinity , alignment: .center)
+                        .padding(.horizontal)
+                        .transition(.opacity)
+                }
                 
                 HStack(spacing : 12){
                     Text ("Đã có tài khoản?")

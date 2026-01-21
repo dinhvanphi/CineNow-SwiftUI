@@ -13,3 +13,6 @@ struct AccountVerificationView : View {
         
     }
 }
+#Preview {
+    AccountVerificationView()
+}
