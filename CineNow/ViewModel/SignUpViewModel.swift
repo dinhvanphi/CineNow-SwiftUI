@@ -33,6 +33,7 @@ final class SignUpViewModel : ObservableObject {
         }
         isLoading = true
         errorMessage = nil
+        shouldNavigatetoOTP = false
         
         AuthService.shared.register(
             name : name ,
