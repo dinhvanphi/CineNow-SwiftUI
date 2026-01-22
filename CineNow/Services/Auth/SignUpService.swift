@@ -24,7 +24,8 @@ final class SignUpService {
         
         
     ) {
-        guard let url = URL(string: "https://282e46ea4587.ngrok-free.app/api/register") else {
+        let urlString = AppConfig.baseUrl + AppConfig.API.register
+        guard let url = URL(string : urlString) else {
             return
         }
         var request = URLRequest(url : url)

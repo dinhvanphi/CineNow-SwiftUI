@@ -10,7 +10,7 @@ import Foundation
 struct VerifyAccountResponse : Codable{
     let success : String
     let message : String
-    let token : String
+    let token : String?
     
     enum CodingKeys : String , CodingKey {
         case success , message , token
