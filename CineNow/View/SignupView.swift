@@ -52,7 +52,7 @@ struct SignupView : View {
                     TextField("Họ và tên" , text : $viewModel.name)
                         .foregroundColor(.white)
                         .textInputAutocapitalization(.never)
-                        .keyboardType(.emailAddress)
+
                 }
                 .padding()
                 .background(Color.white.opacity(0.08))
@@ -66,7 +66,7 @@ struct SignupView : View {
                     TextField("Số điện thoại" , text : $viewModel.phone)
                         .foregroundColor(.white)
                         .textInputAutocapitalization(.never)
-                        .keyboardType(.emailAddress)
+                        .keyboardType(.phonePad)
                 }
                 .padding()
                 .background(Color.white.opacity(0.08))
@@ -94,7 +94,6 @@ struct SignupView : View {
                     TextField("Mật khẩu" , text : $viewModel.password)
                         .foregroundColor(.white)
                         .textInputAutocapitalization(.never)
-                        .keyboardType(.emailAddress)
                 }
                 .padding()
                 .background(Color.white.opacity(0.08))
@@ -108,7 +107,6 @@ struct SignupView : View {
                     TextField("Xác nhận mật khẩu" , text : $viewModel.confirmPassword)
                         .foregroundColor(.white)
                         .textInputAutocapitalization(.never)
-                        .keyboardType(.emailAddress)
                 }
                 .padding()
                 .background(Color.white.opacity(0.08))
