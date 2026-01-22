@@ -35,7 +35,7 @@ final class SignUpViewModel : ObservableObject {
         errorMessage = nil
         shouldNavigatetoOTP = false
         
-        AuthService.shared.register(
+        SignUpService.shared.register(
             name : name ,
             email : email ,
             phone : phone ,

@@ -11,8 +11,8 @@ struct ApiErrorResponse : Decodable {
     let message : String
 }
 
-final class AuthService {
-    static let shared = AuthService()
+final class SignUpService {
+    static let shared = SignUpService()
     private init () {}
     
     func register (

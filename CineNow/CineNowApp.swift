@@ -15,7 +15,7 @@ struct CineNowApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack{
-                IntroView()
+                AccountVerificationView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
