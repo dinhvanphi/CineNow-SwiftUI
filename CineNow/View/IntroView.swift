@@ -62,33 +62,39 @@ struct IntroView: View {
 
                 // Buttons
                 VStack(spacing: 14) {
-                    Button("Đăng nhập") {
+                    Button {
                         showLogin = true
+                    } label :{
+                        Text("Đăng nhập")
+                            .navigationDestination(isPresented: $showLogin ){
+                                LoginView()
+                            }
+                            .frame(maxWidth: .infinity, minHeight: 52)
+                            .background(Color.yellow)
+                            .foregroundColor(.black)
+                            .cornerRadius(14)
+                            .font(.headline)
                     }
-                    .navigationDestination(isPresented: $showLogin ){
-                        LoginView()
-                    }
-                        .frame(maxWidth: .infinity, minHeight: 52)
-                        .background(Color.yellow)
-                        .foregroundColor(.black)
-                        .cornerRadius(14)
-                        .font(.headline)
-
-                    Button("Đăng ký") {
+                    
+                    Button {
                         showSignup = true
+                    }  label : {
+                        Text("Đăng Ký")
+                            .navigationDestination(isPresented: $showSignup){
+                                SignupView()
+                            }
+                        
+                            .frame(maxWidth: .infinity, minHeight: 52)
+                            .background(.clear)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 14)
+                                    .stroke(Color.yellow, lineWidth: 2)
+                            )
+                            .foregroundColor(.yellow)
+                            .font(.headline)
                     }
-                    .navigationDestination(isPresented: $showSignup){
-                        SignupView()
-                    }
-                        .frame(maxWidth: .infinity, minHeight: 52)
-                        .background(.clear)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 14)
-                                .stroke(Color.yellow, lineWidth: 2)
-                        )
-                        .foregroundColor(.yellow)
-                        .font(.headline)
                 }
+                
                 .padding(.horizontal, 32)
 
                 // Footer

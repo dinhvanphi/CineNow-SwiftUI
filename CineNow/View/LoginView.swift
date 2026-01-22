@@ -86,13 +86,14 @@ struct LoginView : View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     Spacer().frame(height: 30)
                     
-                    Button("Đăng nhập") { }
+                    Button { } label:{
+                        Text("Đăng nhập")
                         .frame(maxWidth: .infinity , minHeight: 52)
                         .background(Color.yellow)
                         .foregroundColor(.black)
                         .cornerRadius(20)
                         .font(.headline)
-                    
+                    }
                     HStack(spacing: 12) {
                         Rectangle()
                             .frame(maxWidth: .infinity)
