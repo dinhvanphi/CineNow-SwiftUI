@@ -9,6 +9,8 @@ import Foundation
 import Combine
 import SwiftUI
 
+
+
 struct SignupView : View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel = SignUpViewModel()
@@ -145,7 +147,7 @@ struct SignupView : View {
                 .disabled(!isAccepted)
                 .padding()
                 .navigationDestination(isPresented: $viewModel.shouldNavigatetoOTP){
-                    AccountVerificationView()
+                    AccountVerificationView(email : viewModel.email)
                 }
                 
                 if let error = viewModel.errorMessage{
@@ -181,6 +183,8 @@ struct SignupView : View {
         .navigationBarBackButtonHidden(true)
     }
 }
+
+
 #Preview{
     SignupView()
 }

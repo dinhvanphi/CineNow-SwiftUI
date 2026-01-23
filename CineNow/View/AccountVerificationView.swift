@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 
 struct AccountVerificationView : View {
-    @State private var otp = ""
+    @StateObject private var viewModel : AccountVerificationViewModel
+    
+    init(email : String){
+        _viewModel = StateObject (wrappedValue:AccountVerificationViewModel(email: email)   )
+    }
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -32,7 +36,7 @@ struct AccountVerificationView : View {
                 Spacer().frame(height : 50)
                 
                 
-                TextField("Nhập mã OTP 6 chữ số" , text : $otp)
+                TextField("Nhập mã OTP 6 chữ số" , text : $viewModel.otp)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white)
                     .font(.system(size : 22 , weight: .bold))
@@ -40,13 +44,25 @@ struct AccountVerificationView : View {
                     .background(Color.white.opacity(0.08))
                     .cornerRadius(20)
                     .keyboardType(.numberPad)
+                
+                if let error = viewModel.errorMessage {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .font(.footnote)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal)
+                        .transition(.opacity)
+                }
+                
                 Text("Mã hết hạn sau : 10:00")
                     .foregroundColor(.yellow)
                     .frame(maxWidth: .infinity , alignment: .trailing)
                     .padding()
                 Spacer().frame(height : 50)
                 
-                Button{}
+                Button{
+                    viewModel.verifyAccount()
+                }
                 label : {
                     Text("Xác nhận")
                         .frame(maxWidth: .infinity , minHeight: 60 )
@@ -56,6 +72,9 @@ struct AccountVerificationView : View {
                         .cornerRadius(20)
                         .padding()
                     
+                }
+                .navigationDestination(isPresented: $viewModel.isVerified) {
+                    LoginView()
                 }
                 Spacer().frame(height : 50)
                 
@@ -69,5 +88,5 @@ struct AccountVerificationView : View {
     }
 }
 #Preview {
-    AccountVerificationView()
+    AccountVerificationView(email : "phi.dev@gmail.com")
 }
