@@ -8,7 +8,7 @@
 import Foundation
 
 struct VerifyAccountResponse : Codable{
-    let success : String
+    let success : Bool
     let message : String
     let token : String?
     
