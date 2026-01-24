@@ -129,27 +129,37 @@ struct SignupView : View {
                 }
                 .padding()
                 
-                Button {
-                    viewModel.register()
-                    
-                }
-                label : {
-                    Text("Đăng Ký")
-                        .foregroundColor(isAccepted ? Color.white : Color.black)
-                        .font(.headline)
-                        .frame(maxWidth: .infinity , minHeight: 52 )
-                        .background(
-                            isAccepted ? Color.yellow : Color.gray
-                        )
+                if viewModel.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                        .frame(maxWidth: .infinity, minHeight: 52)
+                        .background(Color.white.opacity(0.08))
                         .cornerRadius(20)
-                    
-                }
-                .disabled(!isAccepted)
-                .padding()
-                .navigationDestination(isPresented: $viewModel.shouldNavigatetoOTP){
-                    AccountVerificationView(email : viewModel.email)
+                        .padding()
+                } else {
+                    Button {
+                        viewModel.register()
+                        
+                    }
+                    label : {
+                        Text("Đăng Ký")
+                            .foregroundColor(isAccepted ? Color.white : Color.black)
+                            .font(.headline)
+                            .frame(maxWidth: .infinity , minHeight: 52 )
+                            .background(
+                                isAccepted ? Color.yellow : Color.gray
+                            )
+                            .cornerRadius(20)
+                        
+                    }
+                    .disabled(!isAccepted)
+                    .padding()
+                    .navigationDestination(isPresented: $viewModel.shouldNavigatetoOTP){
+                        AccountVerificationView(email : viewModel.email)
+                    }
                 }
                 
+
                 if let error = viewModel.errorMessage{
                     Text(error)
                         .foregroundColor(.yellow)
