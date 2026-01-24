@@ -54,10 +54,13 @@ struct AccountVerificationView : View {
                         .transition(.opacity)
                 }
                 
-                Text("Mã hết hạn sau : 10:00")
+                Text("Mã hết hạn sau : \(viewModel.formattedTime)")
                     .foregroundColor(.yellow)
                     .frame(maxWidth: .infinity , alignment: .trailing)
                     .padding()
+                    .onAppear{
+                        viewModel.startCountdown()
+                    }
                 Spacer().frame(height : 50)
                 
                 Button{
@@ -78,8 +81,11 @@ struct AccountVerificationView : View {
                 }
                 Spacer().frame(height : 50)
                 
-                Text("Gởi lại mã sau : 10:00")
+                Text("Gởi lại mã sau : \(viewModel.formattedTime)")
                     .foregroundColor(.gray)
+                    .onAppear{
+                        viewModel.startCountdown()
+                    }
                 
                 Spacer()
             }

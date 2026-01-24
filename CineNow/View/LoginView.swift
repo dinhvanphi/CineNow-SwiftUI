@@ -20,16 +20,17 @@ struct LoginView : View {
             Color.black.ignoresSafeArea()
             
             VStack(spacing : 30){
-                HStack(spacing : 10){
-                    Button{
-                        dismiss()
-                    } label : {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                            .font(.title.bold())
-                    }
-                    Spacer()
-                }
+//                HStack(spacing : 10){
+//                    Button{
+//                        dismiss()
+//                    } label : {
+//                        Image(systemName: "chevron.left")
+//                            .foregroundColor(.white)
+//                            .font(.title.bold())
+//                    }
+//                    Spacer()
+//                }
+                Spacer().frame(height: 60)
                 VStack(spacing : 10){
                     Image(systemName: "film")
                         .font(.system(size: 60 , weight: .bold))
@@ -149,7 +150,7 @@ struct LoginView : View {
             }
            
         }
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
     }
 }
 #Preview {

@@ -23,16 +23,16 @@ struct SignupView : View {
         ZStack(){
             Color.black.ignoresSafeArea()
             VStack(spacing : 20) {
-                HStack(spacing : 10){
-                    Button{
-                        dismiss()
-                    } label : {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                            .font(.title.bold())
-                    }
-                    Spacer()
-                }
+//                HStack(spacing : 10){
+//                    Button{
+//                        dismiss()
+//                    } label : {
+//                        Image(systemName: "chevron.left")
+//                            .foregroundColor(.white)
+//                            .font(.title.bold())
+//                    }
+//                    Spacer()
+//                }
                 Spacer().frame(height: 5)
                 VStack(spacing : 1){
                     Text ("Đăng Ký Tài Khoản")
@@ -180,7 +180,7 @@ struct SignupView : View {
             }
             .padding()
         }
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
     }
 }
 
