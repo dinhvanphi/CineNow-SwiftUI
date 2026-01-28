@@ -8,7 +8,7 @@
 import Foundation
 
 enum AppConfig {
-    static let baseUrl = "https://282e46ea4587.ngrok-free.app"
+    static let baseUrl = "https://5ea38adacecc.ngrok-free.app"
     
     enum API {
         static let register = "/api/register"
