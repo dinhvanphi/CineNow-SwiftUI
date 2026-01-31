@@ -39,7 +39,7 @@ final class LoginViewModel: ObservableObject {
                 if response.success {
              
                     if let user = response.user {
-                        self.tempUser = user
+                        self.tempUser = User(from : user)
                         self.shouldNavigatetoHome = true
                     } else {
                         self.errorMessage = "Dữ liệu người dùng không hợp lệ"

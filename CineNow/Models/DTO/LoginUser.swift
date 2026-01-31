@@ -6,15 +6,15 @@
 //
 
 import Foundation
+struct LoginUser: Codable {
+    let id: Int
+    let name: String
+    let email: String
+    let phone: String?
+    let createdAt: String
 
-struct LoginUser : Codable {
-    let email : String
-    let phone : String
-    
-    
-    enum CodingKeys : String , CodingKey {
-       
-        case email
-        case phone
+    enum CodingKeys: String, CodingKey {
+        case id, name, email, phone
+        case createdAt = "created_at"
     }
 }

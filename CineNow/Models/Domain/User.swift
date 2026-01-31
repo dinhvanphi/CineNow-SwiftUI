@@ -8,12 +8,12 @@
 import Foundation
 
 struct User : Identifiable , Codable {
-    let id : UUID
+    let id = UUID()
     var name : String
     var email : String
     var phone : String?
     let role : String
-    let createdAt : Date
+    let createdAt : String
     var isVerified : Bool
     var googleId : String?
     var avatarUrl : String?

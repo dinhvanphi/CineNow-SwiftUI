@@ -11,8 +11,7 @@ import SwiftUI
 struct LoginView : View {
     
     @Environment(\.dismiss) private var dismiss
-    @State private var email = ""
-    @State private var password = ""
+    @StateObject private var viewModel = LoginViewModel()
     @State private var isShowPassword = false
     @State private var showSignup = false
     var body : some View {
@@ -55,7 +54,7 @@ struct LoginView : View {
                         Image(systemName: "envelope.fill")
                             .foregroundColor(.yellow)
                         
-                        TextField("Email hoặc số điện thoại" , text : $email)
+                        TextField("Email hoặc số điện thoại" , text : $viewModel.emailOrPhone)
                             .foregroundColor(.white)
                             .textInputAutocapitalization(.never)
                             .keyboardType(.emailAddress)
@@ -66,16 +65,10 @@ struct LoginView : View {
                     HStack{
                         Image(systemName: "lock.fill")
                             .foregroundColor(.yellow)
-                        TextField("Mật khẩu" , text : $password)
+                        TextField("Mật khẩu" , text : $viewModel.password)
                             .foregroundColor(.white)
                         Spacer()
                         
-                        Button {
-                            isShowPassword.toggle()
-                        } label: {
-                            Image(systemName: isShowPassword ? "eye.slash" : "eye")
-                                .foregroundColor(.gray)
-                        }
                     }
                     .padding()
                     .background(Color.white.opacity(0.08))
@@ -87,7 +80,9 @@ struct LoginView : View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     Spacer().frame(height: 30)
                     
-                    Button { } label:{
+                    Button {
+                        viewModel.login()
+                    } label:{
                         Text("Đăng nhập")
                         .frame(maxWidth: .infinity , minHeight: 52)
                         .background(Color.yellow)
@@ -95,6 +90,21 @@ struct LoginView : View {
                         .cornerRadius(20)
                         .font(.headline)
                     }
+                    .padding()
+                    .navigationDestination(isPresented: $viewModel.shouldNavigatetoHome ){
+                        HomeView()
+                    }
+                    
+                    if let error = viewModel.errorMessage {
+                        Text(error)
+                            .foregroundColor(.yellow)
+                            .font(.footnote)
+                            .frame(maxWidth: .infinity , alignment: .center)
+                            .padding(.horizontal)
+                            .transition(.opacity)
+
+                    }
+        
                     HStack(spacing: 12) {
                         Rectangle()
                             .frame(maxWidth: .infinity)

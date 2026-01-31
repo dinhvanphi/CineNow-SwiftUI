@@ -15,13 +15,13 @@ struct RegisterResponse : Codable {
 }
 
 extension User {
-    init (from dto : RegisterUser) {
-        self.id = UUID()
+    init(from dto: RegisterUser) {
+//        self.id = UUID()
         self.name = dto.name
         self.email = dto.email
         self.phone = dto.phone
         self.role = "user"
-        self.createdAt = ISO8601DateFormatter().date(from: dto.createdAt) ?? Date()
+        self.createdAt = dto.createdAt
         self.isVerified = false
         self.googleId = nil
         self.avatarUrl = nil
