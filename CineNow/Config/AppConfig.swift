@@ -14,6 +14,7 @@ enum AppConfig {
         static let register = "/api/register"
         static let verifyAccount = "/api/verify-account"
         static let login = "/api/login"
+        static let movies = "/api/movies"
         
     }
 }
